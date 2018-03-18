@@ -1,1 +1,48 @@
-/* You can add global styles to this file, and also import other style files */
+.slamfont {
+    font-family: 'Oswald', sans-serif;
+}
+body {
+    font-family: 'Mina', sans-serif;
+}
+.jumbo-gradient {
+    background: linear-gradient(to right,#f7a7bf , rgb(211, 90, 146));
+}
+.nav-bg {
+    background-color: #ad1932;
+}
+.fwhite {
+    color: #ffffff;
+}
+.accent-text {
+    color: #ad1932;  
+}
+.bg-color {
+    height: 100%;
+    background: rgb(253, 123, 123);
+}
+.slam-btn {
+    border: 0px;
+    border-bottom: 2px solid #630c26;
+    border-radius: 8px ;
+    background-color: #ad1932;
+    color: #ffffff;
+}
+.slam-btn:active {
+    border: 0px ;
+}
+.slam-input-panel {
+    padding: 10px;
+}
+.slam-input {
+    color: #630c26;
+    border: 0px;
+    border-radius: 8px ;
+    height: 40px;
+    outline: none;
+    background-color: #fab9cd;
+    padding: 5px;
+    font-size: 11pt;
+}
+.slam-input:hover {
+    border: 2px solid #630c26;
+}
