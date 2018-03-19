@@ -9,6 +9,8 @@
     <div class="card-body">
       <h5 class="card-title">{{item.slamname}}</h5>
       <p class="card-text">{{item.slamdescription}}</p>
+      <p>Long press to copy link. Send link to your friends.</p>
+      <p class="card-text"><a href="{{item.link}}" class="accent-link">{{item.link}}</a></p>
       <button pButton type="button" class="btn slam-btn" (click)="listSlamWrites(item.spid)">view slamwrites</button>
     </div>
   </div>
@@ -31,7 +33,6 @@
   <p-dataTable [value]="fields" [loading]="loading">
     <p-column field="username" header="created by"></p-column>
     <p-column field="content.nickname" header="nickname"></p-column>
-    <p-column field="content.firstmeet" header="first meet"></p-column>
     <p-column header="action">
       <ng-template let-content="rowData" pTemplate="body">
         <button type="button" (click)="viewFullContent(content)" class="btn slam-btn">view</button>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Slambook</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Mina" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="assets/slamicon.png">
+    <script src="slamwrite.js"></script>
+</head>
+
+<body class="bg-color" onload="getFields()">
+    <nav class="navbar nav-bg">
+        <a class="navbar-brand fwhite slamfont" href="http://www.slambook.ml/">
+            <img src="assets/slamicon.png" width="30" height="30" class="d-inline-block align-top" alt=""> SlamBook
+        </a>
+    </nav>
+    <div class="jumbotron jumbotron-fluid jumbo-gradient">
+        <div class="container">
+            <h1 class="display-5">Write your Memories!</h1>
+            <p>
+                <strong>Slamname : </strong>
+                <p id="slamname" class="lead"></p>
+            </p>
+            <p>
+                <strong>Slamdescription : </strong>
+                <p id="slamdescription" class="lead"></p>
+            </p>
+            <div id="fields" class="slam-input-panel">
+                <div>nickname</div>
+                <input class="form-control slam-input" id="nickname" placeholder="nickname">
+                <br>
+                <div>first meet</div>
+                <input class="form-control slam-input" id="first meet" placeholder="first meet">
+                <br>
+                <div>first figh</div>
+                <input class="form-control slam-input" id="first fight" placeholder="first fight">
+                <br>
+                <div>tell me about something</div>
+                <input class="form-control slam-input" id="tell me about something" placeholder="tell me about something">
+                <br>
+                <div>link dedicated to me</div>
+                <input class="form-control slam-input" id="link dedicated to me" placeholder="link dedicated to me">
+                <br>
+                <div>your location</div>
+                <input class="form-control slam-input" id="your location" placeholder="your location">
+                <br>
+            </div>
+            <div class="pull-right">
+                <button class="btn slam-btn" onclick="createSlamWrite()">write</button>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        © 2018 Copyright:
+        <a href="http://www.slambook.ml/">
+            <strong> slambook.ml</strong>
+        </a>
+    </div>
+</body>
+
+</html>

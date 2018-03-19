@@ -1,0 +1,58 @@
+.slamfont {
+    font-family: 'Oswald', sans-serif;
+}
+body {
+    font-family: 'Mina', sans-serif;
+}
+.jumbo-gradient {
+    background: linear-gradient(to right,rgb(211, 90, 146),#f7a7bf);
+}
+.nav-bg {
+    background-color: #ad1932;
+}
+.fwhite {
+    color: #ffffff;
+}
+.accent-text {
+    color: #ad1932;  
+}
+.bg-color {
+    height: 100%;
+    background: rgb(253, 123, 123);
+}
+.slam-btn {
+    border: 0px;
+    border-bottom: 2px solid #630c26;
+    border-radius: 8px ;
+    background-color: #ad1932;
+    color: #ffffff;
+}
+.slam-btn:active {
+    border: 0px ;
+}
+.slam-input-panel {
+    padding: 10px;
+}
+.slam-input {
+    color: #630c26;
+    border: 0px;
+    border-radius: 8px ;
+    height: 40px;
+    outline: none;
+    background-color: #fab9cd;
+    padding: 5px;
+    font-size: 11pt;
+}
+.slam-input:hover {
+    border: 2px solid #630c26;
+}
+
+.card-panel {
+    padding: 10px ;
+}
+
+.accent-link {
+    cursor: pointer;
+    text-decoration: underline !important;
+    color: #ad1932 !important;
+}

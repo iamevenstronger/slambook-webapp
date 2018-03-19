@@ -39,6 +39,8 @@ export class SlamPagesComponent implements OnInit {
           this.nocontent = true;
         }
         this.slamPages = response.data;
+        this.slamPages.forEach(element => {
+       element.link = 'http://www.slambook.ml/slamwrite.html?username=' + response.username + '&slamname=' + element.slamname ;        });
       } else {
         this.router.navigate(['/']);
       }
