@@ -8,9 +8,11 @@
   <div class="card" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title">{{item.slamname}}</h5>
-      <p class="card-text">{{item.slamdescription}}</p>
+      <p class="card-text" [innerHTML]="item.slamdescription"></p>
       <p>Long press to copy link. Send link to your friends.</p>
-      <p class="card-text"><a href="{{item.link}}" class="accent-link">{{item.link}}</a></p>
+      <p class="card-text">
+        <a href="{{item.link}}" class="accent-link">{{item.link}}</a>
+      </p>
       <button pButton type="button" class="btn slam-btn" (click)="listSlamWrites(item.spid)">view slamwrites</button>
     </div>
   </div>
@@ -24,7 +26,8 @@
           {{item.key}} => {{item.value}}
         </div>
         <div *ngIf="item.key == 'link dedicated to me'">
-            {{item.key}} => <a href="{{item.value}}" class="accent-link">{{item.value}}</a>
+          {{item.key}} =>
+          <a href="{{item.value}}" class="accent-link">{{item.value}}</a>
         </div>
       </li>
     </ol>
@@ -52,7 +55,15 @@
   </div>
   <div class="slam-input-panel">
     <label for="float-input">slamdescription</label>
-    <p-editor [(ngModel)]="slamdescription" aria-placeholder="slam description" [style]="{'height':'100px'}"></p-editor>
+    <p-editor [(ngModel)]="slamdescription" aria-placeholder="slam description" [style]="{'height':'100px'}">
+      <p-header>
+        <span class="ql-formats">
+          <button class="ql-bold" aria-label="Bold"></button>
+          <button class="ql-italic" aria-label="Italic"></button>
+          <button class="ql-underline" aria-label="Underline"></button>
+        </span>
+      </p-header>
+    </p-editor>
   </div>
   <div class="slam-input-panel">
     <h5>Default fields: </h5>

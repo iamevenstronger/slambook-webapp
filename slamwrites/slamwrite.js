@@ -4,19 +4,24 @@ function getFields() {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var resp = JSON.parse(this.responseText);
-            document.getElementById('slamname').innerHTML = resp.slamname;
-            document.getElementById('slamdescription').innerHTML = resp.slamdescription;
-            var element = document.getElementById("fields");
-            for (var k in resp.data.customfields) {
-                if (resp.data.customfields.hasOwnProperty(k)) {
-                    fields.push(resp.data.customfields[k]);
-                    var div = document.createElement("div");
-                    var node = document.createTextNode(resp.data.customfields[k]);
-                    div.appendChild(node);
-                    element.appendChild(div) ;
-                    element.appendChild(createInput(resp.data.customfields[k]));
-                    element.appendChild(document.createElement("br"));
+            if(resp.success) {
+                document.getElementById('slamname').innerHTML = resp.slamname;
+                document.getElementById('slamdescription').innerHTML = resp.slamdescription;
+                var element = document.getElementById("fields");
+                for (var k in resp.data.customfields) {
+                    if (resp.data.customfields.hasOwnProperty(k)) {
+                        fields.push(resp.data.customfields[k]);
+                        var div = document.createElement("div");
+                        var node = document.createTextNode(resp.data.customfields[k]);
+                        div.appendChild(node);
+                        element.appendChild(div) ;
+                        element.appendChild(createInput(resp.data.customfields[k]));
+                        element.appendChild(document.createElement("br"));
+                    }
                 }
+            } else {
+                alert("Invalid Link");
+                window.location.href = "http://www.slambook.ml";
             }
         }
     };
