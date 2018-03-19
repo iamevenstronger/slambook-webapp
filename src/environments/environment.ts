@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://www.slambook.ml/slambookapi/'
+ // apiUrl: 'http://www.slambook.ml/slambookapi/'
+  apiUrl: 'http://localhost/slambookapi/'
 };

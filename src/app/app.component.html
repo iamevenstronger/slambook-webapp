@@ -8,42 +8,66 @@
   <div class="container">
     <h1 class="display-5">Make Memories</h1>
     <p class="lead">Create slampages to get your friends view about you.</p>
-    <button type="button" class="btn btn slam-btn" data-toggle="modal" data-target="#signup">SignUp</button>
+    <button type="button" class="btn btn slam-btn" data-toggle="modal" data-target="#account">create slampage</button>
   </div>
 </div>
-<p-growl [(value)]="msgs"></p-growl>
-<!-- Signup Modal -->
-<div class="modal fade modal-wid" id="signup" tabindex="-1" role="dialog" aria-labelledby="signupLabel" aria-hidden="true">
+
+<!-- account Modal -->
+<div class="modal fade modal-wid" id="account" tabindex="-1" role="dialog" aria-labelledby="accountLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header nav-bg">
-        <h5 class="modal-title fwhite slamfont" id="signupLabel">SignUp</h5>
+        <h5 class="modal-title fwhite slamfont" id="accountLabel">Account</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <div class="slam-input-panel">
-            <span class="ui-float-label">
-                <input [(ngModel)]="username" class="slam-input form-control" type="text" size="30" pKeyFilter="alphanum" pInputText> 
-                <label class="accent-text" for="float-input">Username</label>
-            </span>
-        </div>
-        <div class="slam-input-panel">
-            <span class="ui-float-label">
-                <input [(ngModel)]="password" pPassword class="slam-input form-control" type="password" size="30"> 
-                <label class="accent-text" for="float-input">Password</label>
-            </span>
-        </div>
-        <div class="slam-input-panel">
-            <span class="ui-float-label">
-                <input [(ngModel)]="email" class="slam-input form-control" type="email" size="30" pInputText> 
-                <label class="accent-text" for="float-input">Email</label>
-            </span>
-        </div>
+        <p-tabView>
+          <p-tabPanel header="SignUp">
+              <p-growl [(value)]="msgs"></p-growl>
+            <div class="slam-input-panel">
+              <span class="ui-float-label">
+                  <input [(ngModel)]="username" class="slam-input form-control" type="text" size="30" pKeyFilter="alphanum" pInputText> 
+                  <label class="accent-text" for="float-input">Username</label>
+              </span>
+          </div>
+          <div class="slam-input-panel">
+              <span class="ui-float-label">
+                  <input [(ngModel)]="password" pPassword class="slam-input form-control" type="password" size="30"> 
+                  <label class="accent-text" for="float-input">Password</label>
+              </span>
+          </div>
+          <div class="slam-input-panel">
+              <span class="ui-float-label">
+                  <input [(ngModel)]="email" class="slam-input form-control" type="email" size="30" pInputText> 
+                  <label class="accent-text" for="float-input">Email</label>
+              </span>
+          </div>
+          <div class="slam-input-panel">
+            <button class="btn slam-btn" (click)="signUpUser()">register</button>
+          </div>
+          </p-tabPanel>
+          <p-tabPanel header="Login">
+            <div class="slam-input-panel">
+              <span class="ui-float-label">
+                  <input [(ngModel)]="loginUsername" class="slam-input form-control" type="text" size="30" pKeyFilter="alphanum" pInputText> 
+                  <label class="accent-text" for="float-input">Username</label>
+              </span>
+          </div>
+          <div class="slam-input-panel">
+              <span class="ui-float-label">
+                  <input [(ngModel)]="loginPassword" pPassword class="slam-input form-control" type="password" size="30"> 
+                  <label class="accent-text" for="float-input">Password</label>
+              </span>
+          </div>
+          <div class="slam-input-panel">
+            <button class="btn slam-btn" (click)="loginUser()">login</button>
+          </div>
+          </p-tabPanel>
+      </p-tabView>
       </div>
       <div class="modal-footer">
-          <button type="button" (click)="signUpUser()" class="btn slam-btn">create</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
