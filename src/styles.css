@@ -46,3 +46,7 @@ body {
 .slam-input:hover {
     border: 2px solid #630c26;
 }
+
+.card-panel {
+    padding: 10px ;
+}

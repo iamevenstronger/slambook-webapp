@@ -10,11 +10,31 @@ import {PasswordModule} from 'primeng/password';
 import {TabViewModule} from 'primeng/tabview';
 import { HttpClientModule } from '@angular/common/http';
 import { AccountService } from './account.service';
+import { RouterModule, Routes } from '@angular/router';
+import { SlamPagesComponent } from './slam-pages/slam-pages.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { StartPageComponent } from './start-page/start-page.component';
+import { CookieService } from 'ngx-cookie-service';
+import {CardModule} from 'primeng/card';
+
+const appRoutes: Routes = [
+  { path: '', component: StartPageComponent },
+  { path: 'slampages', component: SlamPagesComponent },
+  { path: '**', component: PageNotFoundComponent }
+];
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SlamPagesComponent,
+    PageNotFoundComponent,
+    StartPageComponent
   ],
   imports: [
+    RouterModule.forRoot(
+      appRoutes
+    ),
+    CardModule,
     BrowserModule,
     FormsModule,
     GrowlModule,
@@ -23,9 +43,10 @@ import { AccountService } from './account.service';
     InputTextModule,
     PasswordModule,
     TabViewModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
-  providers: [ AccountService ],
+  providers: [ AccountService, CookieService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
