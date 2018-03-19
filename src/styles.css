@@ -50,3 +50,9 @@ body {
 .card-panel {
     padding: 10px ;
 }
+
+.accent-link {
+    cursor: pointer;
+    text-decoration: underline !important;
+    color: #ad1932 !important;
+}

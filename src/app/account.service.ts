@@ -19,4 +19,12 @@ export class AccountService {
   listSlamPages(params: String): Observable<any> {
     return this.http.get(environment.apiUrl + 'listslampages.php?' + params) ;
   }
+
+  createSlamPage(params: String): Observable<any> {
+    return this.http.get(environment.apiUrl + 'createslampage.php?' + params) ;
+  }
+
+  listSlamWrites(params: String): Observable<any> {
+    return this.http.get(environment.apiUrl + 'listslamwrites.php?' + params) ;
+  }
 }

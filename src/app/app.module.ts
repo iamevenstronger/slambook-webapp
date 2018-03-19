@@ -16,7 +16,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { StartPageComponent } from './start-page/start-page.component';
 import { CookieService } from 'ngx-cookie-service';
 import {CardModule} from 'primeng/card';
-
+import {DialogModule} from 'primeng/dialog';
+import {EditorModule} from 'primeng/editor';
+import {SidebarModule} from 'primeng/sidebar';
+import {DataTableModule} from 'primeng/datatable';
 const appRoutes: Routes = [
   { path: '', component: StartPageComponent },
   { path: 'slampages', component: SlamPagesComponent },
@@ -34,6 +37,9 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes
     ),
+    DataTableModule,
+    SidebarModule,
+    EditorModule,
     CardModule,
     BrowserModule,
     FormsModule,
@@ -44,7 +50,8 @@ const appRoutes: Routes = [
     PasswordModule,
     TabViewModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    DialogModule
   ],
   providers: [ AccountService, CookieService ],
   bootstrap: [AppComponent]
