@@ -1,0 +1,67 @@
+<div class="jumbotron jumbotron-fluid jumbo-gradient">
+  <div class="container">
+    <h1 class="display-5">Make Memories</h1>
+    <p class="lead">Create slampages to get your friends view about you.</p>
+    <button type="button" class="btn btn slam-btn" (click)="showDialog()">create slampage</button>
+  </div>
+</div>
+
+<p-dialog header="Account" [(visible)]="display" modal="modal" [responsive]="true" [width]="350" [minWidth]="200" [minY]="70">
+  <p-tabView>
+    <p-growl [(value)]="msgs" [sticky]="false" life="2000"></p-growl>
+  <p-tabPanel header="SignUp">
+    <div class="slam-input-panel">
+      <span class="ui-float-label">
+          <input [(ngModel)]="username" class="slam-input form-control" type="text" size="30" pKeyFilter="alphanum" pInputText> 
+          <label class="accent-text" for="float-input">Username</label>
+      </span>
+  </div>
+  <div class="slam-input-panel">
+      <span class="ui-float-label">
+          <input [(ngModel)]="password" pPassword class="slam-input form-control" type="password" size="30"> 
+          <label class="accent-text" for="float-input">Password</label>
+      </span>
+  </div>
+  <div class="slam-input-panel">
+      <span class="ui-float-label">
+          <input [(ngModel)]="email" class="slam-input form-control" type="email" size="30" pInputText> 
+          <label class="accent-text" for="float-input">Email</label>
+      </span>
+  </div>
+  <div class="slam-input-panel">
+    <button class="btn slam-btn" (click)="signUpUser()">register</button>
+  </div>
+  </p-tabPanel>
+  <p-tabPanel header="Login">
+    <div class="slam-input-panel">
+      <span class="ui-float-label">
+          <input [(ngModel)]="loginUsername" class="slam-input form-control" type="text" size="30" pKeyFilter="alphanum" pInputText> 
+          <label class="accent-text" for="float-input">Username</label>
+      </span>
+  </div>
+  <div class="slam-input-panel">
+      <span class="ui-float-label">
+          <input [(ngModel)]="loginPassword" pInputText class="slam-input form-control" type="password" size="30"> 
+          <label class="accent-text" for="float-input">Password</label>
+      </span>
+  </div>
+  <div class="slam-input-panel">
+    <button class="btn slam-btn" (click)="loginUser()">login</button>
+  </div>
+  </p-tabPanel>
+</p-tabView>
+      <p-footer>
+          <button type="button" class="btn" (click)="closeDialog()">close</button>
+      </p-footer>
+</p-dialog>
+
+
+
+
+
+<div class="text-center">
+  © 2018 Copyright:
+  <a href="http://www.slambook.ml/">
+    <strong> slambook.ml</strong>
+  </a>
+</div>

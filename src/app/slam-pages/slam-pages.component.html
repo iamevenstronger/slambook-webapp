@@ -1,0 +1,89 @@
+<div class="pull-right card-panel">
+  <button (click)="showDialog()" class="btn slam-btn">Add new Slampage</button>
+</div>
+
+<div *ngIf="nocontent" class="jumbotron">No Slampage available. Create one!</div>
+
+<div class="card-panel" style="display:inline-block;" *ngFor="let item of slamPages">
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{item.slamname}}</h5>
+      <p class="card-text">{{item.slamdescription}}</p>
+      <button pButton type="button" class="btn slam-btn" (click)="listSlamWrites(item.spid)">view slamwrites</button>
+    </div>
+  </div>
+</div>
+
+<p-sidebar [(visible)]="visibleSidebar" [fullScreen]="true" [baseZIndex]="10000">
+  <p-dialog header="Slamwrite" [(visible)]="slamwritedisplay">
+    <ol>
+      <li *ngFor="let item of singleField">
+        <div *ngIf="item.key != 'link dedicated to me'">
+          {{item.key}} => {{item.value}}
+        </div>
+        <div *ngIf="item.key == 'link dedicated to me'">
+            {{item.key}} => <a href="{{item.value}}" class="accent-link">{{item.value}}</a>
+        </div>
+      </li>
+    </ol>
+  </p-dialog>
+  <h1 style="font-weight:normal">SlamWrites From your Folks!</h1>
+  <p-dataTable [value]="fields" [loading]="loading">
+    <p-column field="username" header="created by"></p-column>
+    <p-column field="content.nickname" header="nickname"></p-column>
+    <p-column field="content.firstmeet" header="first meet"></p-column>
+    <p-column header="action">
+      <ng-template let-content="rowData" pTemplate="body">
+        <button type="button" (click)="viewFullContent(content)" class="btn slam-btn">view</button>
+      </ng-template>
+    </p-column>
+  </p-dataTable>
+</p-sidebar>
+
+
+<p-dialog header="Add SlamPage" [(visible)]="display" modal="modal" [responsive]="true" [width]="500" [minWidth]="300" [minY]="70">
+  <p-growl [(value)]="msgs" [sticky]="false" life="2000"></p-growl>
+  <div class="slam-input-panel">
+    <span class="ui-float-label">
+      <input [(ngModel)]="slamname" class="slam-input form-control" type="text" size="30" pKeyFilter="alphanum" pInputText>
+      <label class="accent-text" for="float-input">slamname</label>
+    </span>
+  </div>
+  <div class="slam-input-panel">
+    <label for="float-input">slamdescription</label>
+    <p-editor [(ngModel)]="slamdescription" aria-placeholder="slam description" [style]="{'height':'100px'}"></p-editor>
+  </div>
+  <div class="slam-input-panel">
+    <h5>Default fields: </h5>
+    <ul>
+      <li>nickname</li>
+      <li>first meet</li>
+      <li>first fight</li>
+      <li>tell me about something</li>
+      <li>link dedicated to me</li>
+      <li>location</li>
+    </ul>
+  </div>
+  <div class="slam-input-panel">
+    <h5>Custom fields: </h5>
+    <div>
+      <input [(ngModel)]="customfield" type="text" pInputText pKeyFilter="alpha" placeholder="custom fields">
+      <button class="btn slam-btn" (click)="addCustomField()">Add Field</button>
+    </div>
+    <ul>
+      <li *ngFor="let field of customfields">{{field}}</li>
+    </ul>
+  </div>
+  <p-footer>
+    <button type="button" (click)="createSlamPage()" class="btn slam-btn">Add</button>
+    <button type="button" class="btn" (click)="closeDialog()">Close</button>
+  </p-footer>
+</p-dialog>
+
+<div class="text-center">
+  © 2018 Copyright:
+  <a href="http://www.slambook.ml/">
+    <strong> slambook.ml</strong>
+  </a>
+  <a class="accent-link" (click)="logout()">logout</a>
+</div>
