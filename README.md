@@ -30,17 +30,18 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 *   [Apache](https://httpd.apache.org/): add a [rewrite rule](http://httpd.apache.org/docs/current/mod/mod_rewrite.html) to the `.htaccess` file as shown ([https://ngmilk.rocks/2015/03/09/angularjs-html5-mode-or-pretty-urls-on-apache-using-htaccess/](https://ngmilk.rocks/2015/03/09/angularjs-html5-mode-or-pretty-urls-on-apache-using-htaccess/)):
 
-    <pre><button aria-label="" title="Copy code snippet">content_copy</button>`RewriteEngine On
+    ```
+    RewriteEngine On
         # If an existing asset or directory is requested go to it as it is
         RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f [OR]
         RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -d
         RewriteRule ^ - [L]` </pre>
-
-    `# If the requested resource doesn't exist, use index.html RewriteRule ^ /index.html`
+        # If the requested resource doesn't exist, use index.html RewriteRule ^ /index.html`
+    ```
 
 *   [NGinx](http://nginx.org/): use `try_files`, as described in [Front Controller Pattern Web Apps](https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/#front-controller-pattern-web-apps), modified to serve `index.html`:
 
-    <pre><button aria-label="" title="Copy code snippet">content_copy</button>`try_files $uri $uri/ /index.html;`</pre>
+    ```try_files $uri $uri/ /index.html;```
 
 *   [IIS](https://www.iis.net/): add a rewrite rule to `web.config`, similar to the one shown [here](http://stackoverflow.com/a/26152011/2116927):
 
@@ -65,7 +66,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 *   [Firebase hosting](https://firebase.google.com/docs/hosting/): add a [rewrite rule](https://firebase.google.com/docs/hosting/url-redirects-rewrites#section-rewrites).
 
-    <pre><button aria-label="" title="Copy code snippet">content_copy</button>`"rewrites": [ {
+    ```
+    "rewrites": [ {
       "source": "**",
       "destination": "/index.html"
-    } ]`</pre>
+    } ]
+    ```
