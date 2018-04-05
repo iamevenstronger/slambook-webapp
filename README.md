@@ -44,7 +44,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 *   [IIS](https://www.iis.net/): add a rewrite rule to `web.config`, similar to the one shown [here](http://stackoverflow.com/a/26152011/2116927):
 
-    <pre><button aria-label="" title="Copy code snippet">content_copy</button>`<system.webServer>
+    ```
+    <system.webServer>
       <rewrite>
         <rules>
           <rule name="Angular [Routes](https://angular.io/api/router/Routes)" stopProcessing="true">
@@ -57,7 +58,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
           </rule>
         </rules>
       </rewrite>
-    </system.webServer>`</pre>
+    </system.webServer>
+    ```
 
 *   [GitHub Pages](https://pages.github.com/): you can't [directly configure](https://github.com/isaacs/github/issues/408) the GitHub Pages server, but you can add a 404 page. Copy `index.html` into `404.html`. It will still be served as the 404 response, but the browser will process that page and load the app properly. It's also a good idea to [serve from `docs/` on master](https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/#publishing-your-github-pages-site-from-a-docs-folder-on-your-master-branch)and to [create a `.nojekyll` file](https://www.bennadel.com/blog/3181-including-node-modules-and-vendors-folders-in-your-github-pages-site.htm)
 
