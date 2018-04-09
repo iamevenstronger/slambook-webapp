@@ -82,9 +82,11 @@
       <input [(ngModel)]="customfield" type="text" pInputText pKeyFilter="alpha" placeholder="custom fields">
       <button class="btn slam-btn" (click)="addCustomField()">Add Field</button>
     </div>
-    <ul>
-      <li *ngFor="let field of customfields">{{field}}</li>
-    </ul>
+    <div>
+      <div class="cusfields" *ngFor="let field of customfields; let i = index">
+        <div style="overflow-wrap: break-word;width:90%;">{{ field }} <i class="fa fa-minus-circle pull-right" style="font-size:24px" (click)="removeField(i)"></i></div>
+      </div>
+    </div>
   </div>
   <p-footer>
     <button type="button" (click)="createSlamPage()" class="btn slam-btn">Add</button>

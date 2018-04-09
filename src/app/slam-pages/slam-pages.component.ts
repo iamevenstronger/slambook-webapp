@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
+import { CookieService } from 'ng2-cookies';
 import { AccountService } from './../account.service';
 import { Router } from '@angular/router';
 
@@ -27,12 +27,21 @@ export class SlamPagesComponent implements OnInit {
   fields: any = [];
   loading: Boolean = false;
   url = '';
+  cookies: Object ;
+  keys: Array<string>;
+
   ngOnInit() {
     this.listSlamPage();
   }
 
+  update() {
+    this.cookies = this.cookieService.getAll();
+    this.keys = Object.keys(this.cookies);
+  }
+
   listSlamPage() {
-    this.url = 'token=' + this.cookieService.get('slam_token') + '&uid=' + this.cookieService.get('slam_uid');
+    this.update();
+    this.url = 'token=' + this.cookies['slam_token'] + '&uid=' + this.cookies['slam_uid'];
     this.account.listSlamPages(this.url).subscribe((response) => {
       if (response.success) {
         if (!response.data.length) {
@@ -50,7 +59,7 @@ export class SlamPagesComponent implements OnInit {
   listSlamWrites(spid) {
     this.showVisibleSidebar();
     this.loading = true;
-    this.url = 'token=' + this.cookieService.get('slam_token') + '&spid=' + spid;
+    this.url = 'token=' + this.cookies['slam_token'] + '&spid=' + spid;
     this.account.listSlamWrites(this.url).subscribe((response) => {
       this.fields = response.data;
     });
@@ -79,18 +88,24 @@ export class SlamPagesComponent implements OnInit {
     this.msgs = [] ;
     let cusfield = '{"customfields":';
     cusfield = cusfield + JSON.stringify(this.customfields) + '}';
-    this.url = 'token=' + this.cookieService.get('slam_token') + '&uid=' + this.cookieService.get('slam_uid');
+    this.url = 'token=' + this.cookies['slam_token'] + '&uid=' + this.cookies['slam_uid'];
     this.url = this.url + '&slamname=' + this.slamname + '&slamdescription=' + this.slamdescription + '&content=' + cusfield;
     this.account.createSlamPage(this.url).subscribe((response) => {
       if (response.success) {
         this.msgs.push({ severity: 'success', summary: 'success', detail: response.message });
+        this.nocontent = false ;
         this.listSlamPage();
+        this.closeDialog();
       } else {
         this.msgs.push({ severity: 'error', summary: response.error_in, detail: response.message });
       }
     });
   }
 
+  removeField(i) {
+    this.customfields.splice(i, 1);
+    console.log(this.customfields+"work");
+  }
   logout() {
     this.cookieService.delete('slam_uid');
     this.cookieService.delete('slam_token');

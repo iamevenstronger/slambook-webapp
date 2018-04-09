@@ -14,12 +14,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { SlamPagesComponent } from './slam-pages/slam-pages.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { StartPageComponent } from './start-page/start-page.component';
-import { CookieService } from 'ngx-cookie-service';
 import {CardModule} from 'primeng/card';
 import {DialogModule} from 'primeng/dialog';
 import {EditorModule} from 'primeng/editor';
 import {SidebarModule} from 'primeng/sidebar';
 import {DataTableModule} from 'primeng/datatable';
+import { CookieService } from 'ng2-cookies';
 const appRoutes: Routes = [
   { path: '', component: StartPageComponent },
   { path: 'slampages', component: SlamPagesComponent },
