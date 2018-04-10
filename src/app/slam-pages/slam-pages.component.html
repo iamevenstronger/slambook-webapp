@@ -1,5 +1,5 @@
 <div class="pull-right card-panel">
-  <button (click)="showDialog()" class="btn slam-btn">Add new Slampage</button>
+  <button (click)="this.router.navigate(['addslampage'])" class="btn slam-btn">Add new Slampage</button>
 </div>
 
 <div *ngIf="nocontent" class="jumbotron">No Slampage available. Create one!</div>
@@ -43,56 +43,6 @@
     </p-column>
   </p-dataTable>
 </p-sidebar>
-
-
-<p-dialog header="Add SlamPage" [(visible)]="display" modal="modal" [responsive]="true" [width]="500" [minWidth]="300" [minY]="70">
-  <p-growl [(value)]="msgs" [sticky]="false" life="2000"></p-growl>
-  <div class="slam-input-panel">
-    <span class="ui-float-label">
-      <input [(ngModel)]="slamname" class="slam-input form-control" type="text" size="30" pKeyFilter="alphanum" pInputText>
-      <label class="accent-text" for="float-input">slamname</label>
-    </span>
-  </div>
-  <div class="slam-input-panel">
-    <label for="float-input">slamdescription</label>
-    <p-editor [(ngModel)]="slamdescription" aria-placeholder="slam description" [style]="{'height':'100px'}">
-      <p-header>
-        <span class="ql-formats">
-          <button class="ql-bold" aria-label="Bold"></button>
-          <button class="ql-italic" aria-label="Italic"></button>
-          <button class="ql-underline" aria-label="Underline"></button>
-        </span>
-      </p-header>
-    </p-editor>
-  </div>
-  <div class="slam-input-panel">
-    <h5>Default fields: </h5>
-    <ul>
-      <li>nickname</li>
-      <li>first meet</li>
-      <li>first fight</li>
-      <li>tell me about something</li>
-      <li>link dedicated to me</li>
-      <li>location</li>
-    </ul>
-  </div>
-  <div class="slam-input-panel">
-    <h5>Custom fields: </h5>
-    <div>
-      <input [(ngModel)]="customfield" type="text" pInputText pKeyFilter="alpha" placeholder="custom fields">
-      <button class="btn slam-btn" (click)="addCustomField()">Add Field</button>
-    </div>
-    <div>
-      <div class="cusfields" *ngFor="let field of customfields; let i = index">
-        <div style="overflow-wrap: break-word;width:90%;">{{ field }} <i class="fa fa-minus-circle pull-right" style="font-size:24px" (click)="removeField(i)"></i></div>
-      </div>
-    </div>
-  </div>
-  <p-footer>
-    <button type="button" (click)="createSlamPage()" class="btn slam-btn">Add</button>
-    <button type="button" class="btn" (click)="closeDialog()">Close</button>
-  </p-footer>
-</p-dialog>
 
 <div class="text-center">
   © 2018 Copyright:

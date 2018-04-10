@@ -14,7 +14,6 @@ export class SlamPagesComponent implements OnInit {
     private router: Router,
     private cookieService: CookieService) { }
   visibleSidebar: Boolean = false;
-  display: Boolean = false;
   nocontent: Boolean = false;
   slamwritedisplay: Boolean = false;
   slamname: String = '';
@@ -84,52 +83,17 @@ export class SlamPagesComponent implements OnInit {
     }
   }
 
-  createSlamPage() {
-    this.msgs = [] ;
-    let cusfield = '{"customfields":';
-    cusfield = cusfield + JSON.stringify(this.customfields) + '}';
-    this.url = 'token=' + this.cookies['slam_token'] + '&uid=' + this.cookies['slam_uid'];
-    this.url = this.url + '&slamname=' + this.slamname + '&slamdescription=' + this.slamdescription + '&content=' + cusfield;
-    this.account.createSlamPage(this.url).subscribe((response) => {
-      if (response.success) {
-        this.msgs.push({ severity: 'success', summary: 'success', detail: response.message });
-        this.nocontent = false ;
-        this.listSlamPage();
-        this.closeDialog();
-      } else {
-        this.msgs.push({ severity: 'error', summary: response.error_in, detail: response.message });
-      }
-    });
-  }
-
-  removeField(i) {
-    this.customfields.splice(i, 1);
-    console.log(this.customfields+"work");
-  }
-  logout() {
-    this.cookieService.delete('slam_uid');
-    this.cookieService.delete('slam_token');
-    this.router.navigate(['/']);
-  }
-
-  addCustomField() {
-    this.customfields.push(this.customfield);
-    this.customfield = '';
-  }
-
-  showDialog() {
-    this.display = true;
-  }
-
-  closeDialog() {
-    this.display = false;
-  }
-
   showVisibleSidebar() {
     this.visibleSidebar = true;
   }
 
   closeVisibleSidebar() {
     this.visibleSidebar = false;
+  }
+
+  logout() {
+    this.cookieService.delete('slam_uid');
+    this.cookieService.delete('slam_token');
+    this.router.navigate(['/']);
   }
 }

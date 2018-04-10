@@ -20,9 +20,11 @@ import {EditorModule} from 'primeng/editor';
 import {SidebarModule} from 'primeng/sidebar';
 import {DataTableModule} from 'primeng/datatable';
 import { CookieService } from 'ng2-cookies';
+import { AddSlampageComponent } from './add-slampage/add-slampage.component';
 const appRoutes: Routes = [
   { path: '', component: StartPageComponent },
   { path: 'slampages', component: SlamPagesComponent },
+  { path: 'addslampage', component: AddSlampageComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -31,7 +33,8 @@ const appRoutes: Routes = [
     AppComponent,
     SlamPagesComponent,
     PageNotFoundComponent,
-    StartPageComponent
+    StartPageComponent,
+    AddSlampageComponent
   ],
   imports: [
     RouterModule.forRoot(
