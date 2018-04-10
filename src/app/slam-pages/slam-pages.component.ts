@@ -38,6 +38,10 @@ export class SlamPagesComponent implements OnInit {
     this.keys = Object.keys(this.cookies);
   }
 
+  navigate() {
+    this.router.navigate(['addslampage']);
+  }
+  
   listSlamPage() {
     this.update();
     this.url = 'token=' + this.cookies['slam_token'] + '&uid=' + this.cookies['slam_uid'];
