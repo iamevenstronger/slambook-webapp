@@ -36,6 +36,7 @@ export class AddSlampageComponent implements OnInit {
   }
 
   createSlamPage() {
+    this.update();
     this.msgs = [];
     let cusfield = '{"customfields":';
     cusfield = cusfield + JSON.stringify(this.customfields) + '}';
@@ -47,12 +48,17 @@ export class AddSlampageComponent implements OnInit {
         this.router.navigate(['slampages']);
       } else {
         this.msgs.push({ severity: 'error', summary: response.error_in, detail: response.message });
+        if(response.error_in == 'token') {
+          this.router.navigate(['/']);
+        }
       }
     });
   }
 
   addCustomField() {
-    this.customfields.push(this.customfield);
+    if(this.customfield) {
+      this.customfields.push(this.customfield);
+    }
     this.customfield = '';
   }
 

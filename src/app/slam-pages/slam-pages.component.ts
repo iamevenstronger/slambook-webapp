@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ng2-cookies';
 import { AccountService } from './../account.service';
 import { Router } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-slam-pages',
@@ -12,7 +13,8 @@ export class SlamPagesComponent implements OnInit {
 
   constructor(private account: AccountService,
     private router: Router,
-    private cookieService: CookieService) { }
+    private cookieService: CookieService,
+    private confirmationService: ConfirmationService) { }
   visibleSidebar: Boolean = false;
   nocontent: Boolean = false;
   slamwritedisplay: Boolean = false;
@@ -26,8 +28,9 @@ export class SlamPagesComponent implements OnInit {
   fields: any = [];
   loading: Boolean = false;
   url = '';
-  cookies: Object ;
+  cookies: Object;
   keys: Array<string>;
+  isCopied: boolean = false;
 
   ngOnInit() {
     this.listSlamPage();
@@ -41,7 +44,34 @@ export class SlamPagesComponent implements OnInit {
   navigate() {
     this.router.navigate(['addslampage']);
   }
-  
+
+  onCopy() {
+    this.msgs = [];
+    this.msgs.push({ severity: 'success', summary: 'Content Copied', detail: 'copied' });
+  }
+
+  confirm(spid, slamname) {
+    this.msgs = [];
+    this.update();
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to delete?',
+      accept: () => {
+        this.url = 'token=' + this.cookies['slam_token'] + '&uid=' + this.cookies['slam_uid'] + '&slamname=' + slamname;
+        this.account.deleteSlamPage(this.url).subscribe((response) => {
+          if (response.success) {
+            this.msgs.push({ severity: 'success', summary: 'success', detail: response.message });
+            this.listSlamPage();
+          } else {
+            this.msgs.push({ severity: 'error', summary: response.error_in, detail: response.message });
+            if (response.error_in == 'token') {
+              this.router.navigate(['/']);
+            }
+          }
+        });
+      }
+    });
+  }
+
   listSlamPage() {
     this.update();
     this.url = 'token=' + this.cookies['slam_token'] + '&uid=' + this.cookies['slam_uid'];
@@ -52,7 +82,8 @@ export class SlamPagesComponent implements OnInit {
         }
         this.slamPages = response.data;
         this.slamPages.forEach(element => {
-       element.link = 'http://www.slambook.ml/slamwrite.html?username=' + response.username + '&slamname=' + element.slamname ;        });
+          element.link = 'http://www.slambook.ml/slamwrite.html?username=' + response.username + '&slamname=' + element.slamname;
+        });
       } else {
         this.router.navigate(['/']);
       }
@@ -70,8 +101,8 @@ export class SlamPagesComponent implements OnInit {
   }
 
   viewFullContent(content) {
-    this.singleField = [] ;
-    const contents = content.content ;
+    this.singleField = [];
+    const contents = content.content;
     this.slamwritedisplay = true;
     let k = '';
     for (k in contents) {
@@ -79,7 +110,7 @@ export class SlamPagesComponent implements OnInit {
         this.singleField.push({ key: k, value: contents[k] });
       }
     }
-    const cusfield = contents.customfields ;
+    const cusfield = contents.customfields;
     for (k in cusfield) {
       if (cusfield.hasOwnProperty(k)) {
         this.singleField.push({ key: k, value: cusfield[k] });

@@ -21,6 +21,9 @@ import {SidebarModule} from 'primeng/sidebar';
 import {DataTableModule} from 'primeng/datatable';
 import { CookieService } from 'ng2-cookies';
 import { AddSlampageComponent } from './add-slampage/add-slampage.component';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
+import { ClipboardModule } from 'ngx-clipboard';
 const appRoutes: Routes = [
   { path: '', component: StartPageComponent },
   { path: 'slampages', component: SlamPagesComponent },
@@ -41,6 +44,8 @@ const appRoutes: Routes = [
       appRoutes
     ),
     DataTableModule,
+    ConfirmDialogModule,
+    ClipboardModule,
     SidebarModule,
     EditorModule,
     CardModule,
@@ -56,7 +61,7 @@ const appRoutes: Routes = [
     RouterModule,
     DialogModule
   ],
-  providers: [ AccountService, CookieService ],
+  providers: [ AccountService, CookieService ,ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

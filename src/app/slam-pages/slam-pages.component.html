@@ -3,17 +3,31 @@
 </div>
 
 <div *ngIf="nocontent" class="jumbotron">No Slampage available. Create one!</div>
+<p-growl [(value)]="msgs" [sticky]="false" life="2000"></p-growl>
+<p-confirmDialog header="Delete Slampage" icon="fa fa-question-circle" width="425" #cd>
+  <p-footer>
+    <button type="button" class="btn slam-btn" icon="fa-close" label="No" (click)="cd.reject()">cancel</button>
+    <button type="button" class="btn slam-btn" icon="fa-check" label="Yes" (click)="cd.accept()">delete</button>
+  </p-footer>
+</p-confirmDialog>
 
 <div class="card-panel" style="display:inline-block;" *ngFor="let item of slamPages">
   <div class="card" style="width: 18rem;">
+    <div style="padding:5px;">
+      <i class="fa fa-trash pull-right" (click)="confirm(item.spid,item.slamname)" aria-hidden="true"></i>
+    </div>
     <div class="card-body">
       <h5 class="card-title">{{item.slamname}}</h5>
       <p class="card-text" [innerHTML]="item.slamdescription"></p>
-      <p>Long press to copy link. Send link to your friends.</p>
-      <p class="card-text">
-        <a href="{{item.link}}" class="accent-link">{{item.link}}</a>
-      </p>
-      <button pButton type="button" class="btn slam-btn" (click)="listSlamWrites(item.spid)">view slamwrites</button>
+      <p>Copy link send to your friends.</p>
+      <div class="input-group">
+        <input type="url"  class="slam-input form-control" [(ngModel)]="item.link" readonly>
+        <span class="input-group-btn">
+          <button class="btn slam-btn" [class.btn-success]="isCopied" type="button" ngxClipboard [cbContent]="item.link" (cbOnSuccess)="onCopy()">copy</button>
+        </span>
+      </div>
+      <br>
+      <button type="button" class="btn slam-btn" (click)="listSlamWrites(item.spid)">view slamwrites</button>
     </div>
   </div>
 </div>

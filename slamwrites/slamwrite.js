@@ -21,13 +21,13 @@ function getFields() {
                 }
             } else {
                 alert("Invalid Link");
-                window.location.href = "http://www.slambook.ml";
+                window.location.href = "http://localhost";
             }
         }
     };
     var url = window.location.href;
     result = parseQueryString(url);
-    xhttp.open("GET", "http://localhost/slambookapi/getpagedetail.php?slamname=" + result.slamname, true);
+    xhttp.open("GET", "http://localhost/slambook-api/getpagedetail.php?slamname=" + result.slamname, true);
     xhttp.send();
 }
 
@@ -63,14 +63,14 @@ function createSlamWrite() {
             var resp = JSON.parse(this.responseText);
             if (resp.success) {
                 alert(resp.message);
-                window.location.href = "http://www.slambook.ml";
+                window.location.href = "http://localhost";
             }
         }
     };
     var url = window.location.href;
     result = parseQueryString(url);
     var query = "username=" + result.username + "&slamname=" + result.slamname + "&content=" + JSON.stringify(json);
-    xhttp.open("GET", "http://localhost/slambookapi/createslamwrite.php?" + query, true);
+    xhttp.open("GET", "http://localhost/slambook-api/createslamwrite.php?" + query, true);
     xhttp.send();
 }
 
