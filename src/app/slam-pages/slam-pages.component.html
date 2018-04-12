@@ -14,6 +14,7 @@
 <div class="card-panel" style="display:inline-block;" *ngFor="let item of slamPages">
   <div class="card" style="width: 18rem;">
     <div style="padding:5px;">
+      <i class="fa fa-edit pull-right" (click)="editSlam(item)"></i>
       <i class="fa fa-trash pull-right" (click)="confirm(item.spid,item.slamname)" aria-hidden="true"></i>
     </div>
     <div class="card-body">
@@ -21,7 +22,7 @@
       <p class="card-text" [innerHTML]="item.slamdescription"></p>
       <p>Copy link send to your friends.</p>
       <div class="input-group">
-        <input type="url"  class="slam-input form-control" [(ngModel)]="item.link" readonly>
+        <input type="url" class="slam-input form-control" [(ngModel)]="item.link" readonly>
         <span class="input-group-btn">
           <button class="btn slam-btn" [class.btn-success]="isCopied" type="button" ngxClipboard [cbContent]="item.link" (cbOnSuccess)="onCopy()">copy</button>
         </span>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ng2-cookies';
 import { AccountService } from './../account.service';
 import { Router } from '@angular/router';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-add-slampage',
@@ -10,22 +11,33 @@ import { Router } from '@angular/router';
 })
 export class AddSlampageComponent implements OnInit {
 
+  slamname: String = '';
+  slamdescription: String = '';
+  singleField: any = [];
+  customfields: any = [];
+  customfield: String = '';
+  slamPages: any = [];
+  msgs: any = [];
+  fields: any = [];
+  loading: Boolean = false;
+  url = '';
+  spid = '';
+  uid = '';
+  cookies: Object ;
+  keys: Array<string>;
+
   constructor(private account: AccountService,
     private router: Router,
-    private cookieService: CookieService) { }
-
-    slamname: String = '';
-    slamdescription: String = '';
-    singleField: any = [];
-    customfields: any = [];
-    customfield: String = '';
-    slamPages: any = [];
-    msgs: any = [];
-    fields: any = [];
-    loading: Boolean = false;
-    url = '';
-    cookies: Object ;
-    keys: Array<string>;
+    private cookieService: CookieService,
+    private route: ActivatedRoute) { 
+      this.route.params.subscribe((response) => {
+        console.log(response);
+        this.slamname = response.slamname ;
+        this.slamdescription = response.slamdescription ;
+        this.spid = response.spid;
+        this.uid = response.uid;
+      });
+    }
 
   ngOnInit() {
   }

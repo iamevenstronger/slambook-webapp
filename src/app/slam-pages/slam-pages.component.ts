@@ -50,6 +50,10 @@ export class SlamPagesComponent implements OnInit {
     this.msgs.push({ severity: 'success', summary: 'Content Copied', detail: 'copied' });
   }
 
+  editSlam(item) {
+    this.router.navigate(['addslampage', item]);
+  }
+
   confirm(spid, slamname) {
     this.msgs = [];
     this.update();

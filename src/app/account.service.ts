@@ -28,6 +28,10 @@ export class AccountService {
     return this.http.get(environment.apiUrl + 'deleteslampage.php?' + params) ;   
   }
 
+  updateSlamPage(params: String): Observable<any> {
+    return this.http.get(environment.apiUrl + 'updateslampage.php?' + params);
+  }
+
   listSlamWrites(params: String): Observable<any> {
     return this.http.get(environment.apiUrl + 'listslamwrites.php?' + params) ;
   }

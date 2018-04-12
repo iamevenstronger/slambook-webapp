@@ -28,6 +28,7 @@ const appRoutes: Routes = [
   { path: '', component: StartPageComponent },
   { path: 'slampages', component: SlamPagesComponent },
   { path: 'addslampage', component: AddSlampageComponent },
+  { path: 'addslampage/:data', component: AddSlampageComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
