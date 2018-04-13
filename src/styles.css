@@ -61,3 +61,10 @@ body {
     text-decoration: underline !important;
     color: #ad1932 !important;
 }
+
+@media only screen and (min-width: 600px) {
+    .slampage-add-card {
+        margin-left: 25%;
+        margin-right: 25%;
+    }
+}

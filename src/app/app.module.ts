@@ -24,11 +24,13 @@ import { AddSlampageComponent } from './add-slampage/add-slampage.component';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
 import { ClipboardModule } from 'ngx-clipboard';
+import { ViewSlamwritesComponent } from './view-slamwrites/view-slamwrites.component';
 const appRoutes: Routes = [
   { path: '', component: StartPageComponent },
   { path: 'slampages', component: SlamPagesComponent },
   { path: 'addslampage', component: AddSlampageComponent },
   { path: 'addslampage/:data', component: AddSlampageComponent },
+  { path: 'viewslamwrites/:spid', component: ViewSlamwritesComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -38,7 +40,8 @@ const appRoutes: Routes = [
     SlamPagesComponent,
     PageNotFoundComponent,
     StartPageComponent,
-    AddSlampageComponent
+    AddSlampageComponent,
+    ViewSlamwritesComponent
   ],
   imports: [
     RouterModule.forRoot(

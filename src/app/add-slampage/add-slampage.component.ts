@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ng2-cookies';
 import { AccountService } from './../account.service';
 import { Router } from '@angular/router';
-import {ActivatedRoute} from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-add-slampage',
@@ -23,21 +23,25 @@ export class AddSlampageComponent implements OnInit {
   url = '';
   spid = '';
   uid = '';
-  cookies: Object ;
+  cookies: Object;
   keys: Array<string>;
+  isEdit: boolean = false;
 
   constructor(private account: AccountService,
     private router: Router,
     private cookieService: CookieService,
-    private route: ActivatedRoute) { 
-      this.route.params.subscribe((response) => {
-        console.log(response);
-        this.slamname = response.slamname ;
-        this.slamdescription = response.slamdescription ;
+    private route: ActivatedRoute) {
+    this.route.params.subscribe((response: any) => {
+      if (Object.keys(response).length != 0) {
+        this.slamname = response.slamname;
+        this.slamdescription = response.slamdescription;
+        this.customfields = JSON.parse(response.content).customfields;
         this.spid = response.spid;
         this.uid = response.uid;
-      });
-    }
+        this.isEdit = true;
+      }
+    });
+  }
 
   ngOnInit() {
   }
@@ -57,10 +61,28 @@ export class AddSlampageComponent implements OnInit {
     this.account.createSlamPage(this.url).subscribe((response) => {
       if (response.success) {
         this.msgs.push({ severity: 'success', summary: 'success', detail: response.message });
-        this.router.navigate(['slampages']);
       } else {
         this.msgs.push({ severity: 'error', summary: response.error_in, detail: response.message });
-        if(response.error_in == 'token') {
+        if (response.error_in == 'token') {
+          this.router.navigate(['/']);
+        }
+      }
+    });
+  }
+
+  editSlamPage() {
+    this.update();
+    this.msgs = [];
+    let cusfield = '{"customfields":';
+    cusfield = cusfield + JSON.stringify(this.customfields) + '}';
+    this.url = 'token=' + this.cookies['slam_token'] + '&uid=' + this.uid + '&spid=' + this.spid;
+    this.url = this.url + '&slamdescription=' + this.slamdescription + '&content=' + cusfield;
+    this.account.updateSlamPage(this.url).subscribe((response) => {
+      if (response.success) {
+        this.msgs.push({ severity: 'success', summary: 'success', detail: response.message });
+      } else {
+        this.msgs.push({ severity: 'error', summary: response.error_in, detail: response.message });
+        if (response.error_in == 'token') {
           this.router.navigate(['/']);
         }
       }
@@ -68,7 +90,7 @@ export class AddSlampageComponent implements OnInit {
   }
 
   addCustomField() {
-    if(this.customfield) {
+    if (this.customfield) {
       this.customfields.push(this.customfield);
     }
     this.customfield = '';

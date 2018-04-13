@@ -14,8 +14,9 @@
 <div class="card-panel" style="display:inline-block;" *ngFor="let item of slamPages">
   <div class="card" style="width: 18rem;">
     <div style="padding:5px;">
-      <i class="fa fa-edit pull-right" (click)="editSlam(item)"></i>
-      <i class="fa fa-trash pull-right" (click)="confirm(item.spid,item.slamname)" aria-hidden="true"></i>
+      <span class="pull-left" style="padding:8px;font-size:6pt;color:#a9a7a7;font-family:'Times New Roman', Times, serif">{{item.createdat}}</span>
+      <i style="padding:5px;" class="fa fa-edit pull-right" (click)="editSlam(item)" aria-hidden="true"></i>
+      <i style="padding:5px;" class="fa fa-trash pull-right" (click)="confirm(item.spid,item.slamname)" aria-hidden="true"></i>
     </div>
     <div class="card-body">
       <h5 class="card-title">{{item.slamname}}</h5>
@@ -28,36 +29,10 @@
         </span>
       </div>
       <br>
-      <button type="button" class="btn slam-btn" (click)="listSlamWrites(item.spid)">view slamwrites</button>
+      <button type="button" class="btn slam-btn" (click)="this.router.navigate(['viewslamwrites', item.spid])">view slamwrites</button>
     </div>
   </div>
 </div>
-
-<p-sidebar [(visible)]="visibleSidebar" [fullScreen]="true" [baseZIndex]="10000">
-  <p-dialog header="Slamwrite" [(visible)]="slamwritedisplay">
-    <ol>
-      <li *ngFor="let item of singleField">
-        <div *ngIf="item.key != 'link dedicated to me'">
-          {{item.key}} => {{item.value}}
-        </div>
-        <div *ngIf="item.key == 'link dedicated to me'">
-          {{item.key}} =>
-          <a href="{{item.value}}" class="accent-link">{{item.value}}</a>
-        </div>
-      </li>
-    </ol>
-  </p-dialog>
-  <h1 style="font-weight:normal">SlamWrites From your Folks!</h1>
-  <p-dataTable [value]="fields" [loading]="loading">
-    <p-column field="username" header="created by"></p-column>
-    <p-column field="content.nickname" header="nickname"></p-column>
-    <p-column header="action">
-      <ng-template let-content="rowData" pTemplate="body">
-        <button type="button" (click)="viewFullContent(content)" class="btn slam-btn">view</button>
-      </ng-template>
-    </p-column>
-  </p-dataTable>
-</p-sidebar>
 
 <div class="text-center">
   © 2018 Copyright:

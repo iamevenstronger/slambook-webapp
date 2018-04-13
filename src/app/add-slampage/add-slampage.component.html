@@ -1,49 +1,66 @@
-<div style="background-color:#ffffff;padding:40px;">
-    <p-growl [(value)]="msgs" [sticky]="false" life="2000"></p-growl>
-<h3>Add Slampage</h3>
-<div class="slam-input-panel">
-  <span class="ui-float-label">
-    <input [(ngModel)]="slamname" class="slam-input form-control" type="text" size="30" pKeyFilter="alphanum" pInputText>
-    <label class="accent-text" for="float-input">slamname</label>
-  </span>
-</div>
-<div class="slam-input-panel">
-  <label for="float-input">slamdescription</label>
-  <p-editor [(ngModel)]="slamdescription" aria-placeholder="slam description" [style]="{'height':'100px'}">
-    <p-header>
-      <span class="ql-formats">
-        <button class="ql-bold" aria-label="Bold"></button>
-        <button class="ql-italic" aria-label="Italic"></button>
-        <button class="ql-underline" aria-label="Underline"></button>
-      </span>
-    </p-header>
-  </p-editor>
-</div>
-<div class="slam-input-panel">
-  <h5>Default fields: </h5>
-  <ul>
-    <li>your name</li>
-    <li>first meet</li>
-    <li>first fight</li>
-    <li>tell me about something</li>
-    <li>link dedicated to me</li>
-    <li>location</li>
-  </ul>
-</div>
-<div class="slam-input-panel">
-  <h5>Custom fields: </h5>
-  <div>
-    <input [(ngModel)]="customfield" type="text" pInputText pKeyFilter="alpha" placeholder="custom fields">
-    <button class="btn slam-btn" (click)="addCustomField()">Add Field</button>
-  </div>
-  <div>
-    <div class="cusfields" *ngFor="let field of customfields; let i = index">
-      <div style="overflow-wrap: break-word;width:90%;">{{ field }} <i class="fa fa-minus-circle pull-right" style="font-size:24px" (click)="removeField(i)"></i></div>
+<div class="card-panel slampage-add-card" style="display:inline-block;">
+  <div class="card">
+    <div class="card-body">
+      <div style="background-color:#ffffff;padding:40px;">
+        <p-growl [(value)]="msgs" [sticky]="false" life="2000"></p-growl>
+        <h3 class="card-title" *ngIf="!isEdit">Add Slampage</h3>
+        <h3 class="card-title" *ngIf="isEdit">Edit Slampage</h3>
+        <div class="slam-input-panel">
+          <span class="ui-float-label">
+            <input [(ngModel)]="slamname" [disabled]="isEdit" class="slam-input form-control" type="text" size="30" pKeyFilter="alphanum"
+              pInputText>
+            <label class="accent-text" for="float-input">slamname</label>
+          </span>
+          <div *ngIf="isEdit" style="color:#ff0000;">* slamname disabled</div>
+        </div>
+        <div class="slam-input-panel">
+          <label for="float-input">slamdescription</label>
+          <p-editor [(ngModel)]="slamdescription" aria-placeholder="slam description" [style]="{'height':'100px'}">
+            <p-header>
+              <span class="ql-formats">
+                <button class="ql-bold" aria-label="Bold"></button>
+                <button class="ql-italic" aria-label="Italic"></button>
+                <button class="ql-underline" aria-label="Underline"></button>
+              </span>
+            </p-header>
+          </p-editor>
+        </div>
+        <div class="slam-input-panel">
+          <h5>Default fields: </h5>
+          <ul>
+            <li>your name</li>
+            <li>first meet</li>
+            <li>first fight</li>
+            <li>tell me about something</li>
+            <li>link dedicated to me</li>
+            <li>location</li>
+          </ul>
+        </div>
+        <div class="slam-input-panel">
+          <h5>Custom fields: </h5>
+          <div>
+            <div class="input-group">
+              <input [(ngModel)]="customfield" class="slam-input form-control" type="text" placeholder="custom fields">
+              <span class="input-group-btn">
+                <button class="btn slam-btn" (click)="addCustomField()">Add Field</button>
+              </span>
+            </div>
+          </div>
+          <div>
+            <div class="cusfields" *ngFor="let field of customfields; let i = index">
+              <div style="overflow-wrap: break-word;width:90%;">{{ field }}
+                <i class="fa fa-minus-circle pull-right" style="font-size:24px" (click)="removeField(i)"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <button type="button" *ngIf="!isEdit" (click)="createSlamPage()" class="btn slam-btn">Add Slampage</button>
+        <button type="button" *ngIf="isEdit" (click)="editSlamPage()" class="btn slam-btn">Edit Slampage</button>
+        <button type="button" (click)="this.router.navigate(['slampages']);" class="btn slam-btn">back</button>
+      </div>
     </div>
   </div>
-</div>
-<br>
-  <button type="button" (click)="createSlamPage()" class="btn slam-btn">Add Slampage</button>
 </div>
 
 <div class="text-center">

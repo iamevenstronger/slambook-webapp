@@ -15,17 +15,14 @@ export class SlamPagesComponent implements OnInit {
     private router: Router,
     private cookieService: CookieService,
     private confirmationService: ConfirmationService) { }
-  visibleSidebar: Boolean = false;
+
   nocontent: Boolean = false;
-  slamwritedisplay: Boolean = false;
   slamname: String = '';
   slamdescription: String = '';
-  singleField: any = [];
   customfields: any = [];
   customfield: String = '';
   slamPages: any = [];
   msgs: any = [];
-  fields: any = [];
   loading: Boolean = false;
   url = '';
   cookies: Object;
@@ -49,8 +46,9 @@ export class SlamPagesComponent implements OnInit {
     this.msgs = [];
     this.msgs.push({ severity: 'success', summary: 'Content Copied', detail: 'copied' });
   }
-
+ 
   editSlam(item) {
+    item.content = JSON.stringify(item.content);
     this.router.navigate(['addslampage', item]);
   }
 
@@ -92,42 +90,6 @@ export class SlamPagesComponent implements OnInit {
         this.router.navigate(['/']);
       }
     });
-  }
-
-  listSlamWrites(spid) {
-    this.showVisibleSidebar();
-    this.loading = true;
-    this.url = 'token=' + this.cookies['slam_token'] + '&spid=' + spid;
-    this.account.listSlamWrites(this.url).subscribe((response) => {
-      this.fields = response.data;
-    });
-    this.loading = false;
-  }
-
-  viewFullContent(content) {
-    this.singleField = [];
-    const contents = content.content;
-    this.slamwritedisplay = true;
-    let k = '';
-    for (k in contents) {
-      if (contents.hasOwnProperty(k) && k !== 'customfields') {
-        this.singleField.push({ key: k, value: contents[k] });
-      }
-    }
-    const cusfield = contents.customfields;
-    for (k in cusfield) {
-      if (cusfield.hasOwnProperty(k)) {
-        this.singleField.push({ key: k, value: cusfield[k] });
-      }
-    }
-  }
-
-  showVisibleSidebar() {
-    this.visibleSidebar = true;
-  }
-
-  closeVisibleSidebar() {
-    this.visibleSidebar = false;
   }
 
   logout() {
