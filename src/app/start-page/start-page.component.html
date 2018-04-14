@@ -46,6 +46,10 @@
         </span>
       </div>
       <div class="slam-input-panel">
+        <p-checkbox [(ngModel)]="terms" binary="true"></p-checkbox>
+        I have read and accept the <a class="accent-link" href="http://www.slambook.ml/termsandconditions.html">Terms and Conditions</a>
+      </div>
+      <div class="slam-input-panel">
         <button class="btn slam-btn" (click)="loginUser()">login</button>
       </div>
     </p-tabPanel>
@@ -64,6 +68,7 @@
   <a href="http://www.slambook.ml/">
     <strong> slambook.ml</strong>
   </a>
+  | <a href="http://www.slambook.ml/privacypolicy.htm">Privacy Policy</a>
   <div>
     PoweredBy
     <a href="https://www.youtube.com/channel/UCuft1InkD50d1cZJsP4QS-w/videos">

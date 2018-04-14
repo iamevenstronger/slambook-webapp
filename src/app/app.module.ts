@@ -25,6 +25,7 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
 import { ClipboardModule } from 'ngx-clipboard';
 import { ViewSlamwritesComponent } from './view-slamwrites/view-slamwrites.component';
+import {CheckboxModule} from 'primeng/checkbox';
 const appRoutes: Routes = [
   { path: '', component: StartPageComponent },
   { path: 'slampages', component: SlamPagesComponent },
@@ -63,7 +64,8 @@ const appRoutes: Routes = [
     TabViewModule,
     HttpClientModule,
     RouterModule,
-    DialogModule
+    DialogModule,
+    CheckboxModule
   ],
   providers: [ AccountService, CookieService ,ConfirmationService],
   bootstrap: [AppComponent]

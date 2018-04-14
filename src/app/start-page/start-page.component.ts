@@ -20,12 +20,14 @@ export class StartPageComponent implements OnInit {
   msgs: any = [] ;
   url: String = '' ;
   display: Boolean = false ;
+  terms: boolean = false ;
   ngOnInit() {
   }
 
   signUpUser() {
+    
     this.msgs = [] ;
-    this.url = 'username=' + this.username + '&password=' + this.password + '&email=' + this.email;
+    this.url = 'username=' + this.username + '&password=' + this.password + '&email=' + this.email + '&terms=' + this.terms;
     this.account.signUp(this.url).subscribe((response) => {
         if ( response.success ) {
           this.msgs.push({severity: 'success', summary: 'success', detail: response.message });

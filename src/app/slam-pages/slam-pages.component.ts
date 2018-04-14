@@ -30,6 +30,7 @@ export class SlamPagesComponent implements OnInit {
   isCopied: boolean = false;
 
   ngOnInit() {
+    this.update();
     this.listSlamPage();
   }
 

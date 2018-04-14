@@ -44,6 +44,7 @@ export class AddSlampageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.update();
   }
 
   update() {
