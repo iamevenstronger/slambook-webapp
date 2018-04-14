@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-body">
+    <h5 style="font-weight:normal">Slamwrites from your folks!</h5>
+    <p-dataTable [value]="fields" [loading]="loading">
+      <p-column field="username" header="created by"></p-column>
+      <p-column field="content.nickname" header="nickname"></p-column>
+      <p-column header="action">
+        <ng-template let-content="rowData" pTemplate="body">
+          <button type="button" (click)="viewFullContent(content)" class="btn slam-btn">view</button>
+        </ng-template>
+      </p-column>
+    </p-dataTable>
+  </div>
+  <button type="button" (click)="navBack()" class="btn slam-btn">back</button>
+</div>
+
+
+<p-dialog header="Slamwrite" [(visible)]="slamwritedisplay">
+    <p-dataTable [value]="singleField" [loading]="loading">
+        <p-column field="key" header="Fields"></p-column>
+        <p-column field="value" header="value"></p-column>
+      </p-dataTable>
+</p-dialog>
