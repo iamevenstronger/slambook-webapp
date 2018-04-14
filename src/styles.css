@@ -3,22 +3,23 @@
 }
 body {
     font-family: 'Mina', sans-serif;
+    background: linear-gradient(to right,rgb(135, 74, 255),#fbabdb);
 }
 .jumbo-gradient {
-    background: linear-gradient(to right,#f7a7bf , rgb(211, 90, 146));
+    background: #decffd;
 }
 .nav-bg {
-    background-color: #ad1932;
+    background: linear-gradient(to right,rgb(68, 4, 193),#bf0a90);
 }
 .fwhite {
     color: #ffffff;
 }
 .accent-text {
-    color: #ad1932;  
+    color: #5219ad;  
 }
 .bg-color {
     height: 100%;
-    background: rgb(253, 123, 123);
+    background: linear-gradient(to right,rgb(135, 74, 255),#fbabdb);
 }
 .cusfields {
     border: 1px solid #d1d1d1;
@@ -26,12 +27,20 @@ body {
     margin: 3px;
 }
 .slam-btn {
-    border: 0px;
-    border-bottom: 2px solid #630c26;
-    border-radius: 8px ;
-    background-color: #ad1932;
-    color: #ffffff;
+    border: 0;
+    border-bottom: 2px solid #21025a;
+    border-radius: 8px;
+    background: linear-gradient(to right,rgb(68, 4, 193),#bf0a90);
+    color: #fff;
 }
+.slam-btn-group {
+	border: 0;
+	border-bottom: 2px solid #21025a;
+	border-bottom-right-radius: 8px;
+	border-top-right-radius: 8px;
+	background: linear-gradient(to right,rgb(68, 4, 193),#bf0a90);
+	color: #fff;
+ }
 .slam-btn:active {
     border: 0px ;
 }
@@ -39,17 +48,16 @@ body {
     padding: 10px;
 }
 .slam-input {
-    color: #630c26;
+    color: #280371;
     border: 0px;
-    border-radius: 8px ;
+    border-radius: 8px;
     height: 40px;
-    outline: none;
-    background-color: #fab9cd;
+    outline: 0;
+    background: linear-gradient(to right,rgb(205, 182, 251),#ffc3ef);
     padding: 5px;
-    font-size: 11pt;
 }
 .slam-input:hover {
-    border: 2px solid #630c26;
+    border: 2px solid #280371;
 }
 
 .card-panel {
@@ -59,12 +67,19 @@ body {
 .accent-link {
     cursor: pointer;
     text-decoration: underline !important;
-    color: #ad1932 !important;
+    color: #280371 !important;
 }
 
 @media only screen and (min-width: 600px) {
     .slampage-add-card {
         margin-left: 25%;
         margin-right: 25%;
+        margin-top: 1%;
     }
 }
+
+.mlf20 {
+    width: 60px;
+    margin-left: 20px;
+    margin-top: 20px;
+ }

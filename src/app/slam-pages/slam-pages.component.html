@@ -25,7 +25,7 @@
       <div class="input-group">
         <input type="url" class="slam-input form-control" [(ngModel)]="item.link" readonly>
         <span class="input-group-btn">
-          <button class="btn slam-btn" [class.btn-success]="isCopied" type="button" ngxClipboard [cbContent]="item.link" (cbOnSuccess)="onCopy()">copy</button>
+          <button class="btn slam-btn-group " [class.btn-success]="isCopied" type="button" ngxClipboard [cbContent]="item.link" (cbOnSuccess)="onCopy()">copy</button>
         </span>
       </div>
       <br>
