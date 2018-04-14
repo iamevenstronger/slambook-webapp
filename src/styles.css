@@ -4,6 +4,7 @@
 body {
     font-family: 'Mina', sans-serif;
     background: linear-gradient(to right,rgb(135, 74, 255),#fbabdb);
+    margin: 0px;
 }
 .jumbo-gradient {
     background: #decffd;
@@ -83,3 +84,10 @@ body {
     margin-left: 20px;
     margin-top: 20px;
  }
+
+ .slam-footer {
+	width: 100%;
+	color: white;
+	padding: 40px;
+	background: #360379;
+}
