@@ -28,7 +28,7 @@ export class AddSlampageComponent implements OnInit {
   isEdit: boolean = false;
 
   constructor(private account: AccountService,
-    private router: Router,
+    public router: Router,
     private cookieService: CookieService,
     private route: ActivatedRoute) {
     this.route.params.subscribe((response: any) => {

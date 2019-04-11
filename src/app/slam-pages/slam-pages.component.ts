@@ -12,7 +12,7 @@ import { ConfirmationService } from 'primeng/api';
 export class SlamPagesComponent implements OnInit {
 
   constructor(private account: AccountService,
-    private router: Router,
+    public router: Router,
     private cookieService: CookieService,
     private confirmationService: ConfirmationService) { }
 
